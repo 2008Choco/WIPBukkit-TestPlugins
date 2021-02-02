@@ -11,6 +11,15 @@
     <project.build.sourceEncoding>ASCII</project.build.sourceEncoding>
   </properties>
 
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+
   <!--
     Locally installed CraftBukkit dependency.
 
