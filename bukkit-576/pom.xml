@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>wtf.choco</groupId>
+  <artifactId>bukkit-576</artifactId>
+  <version>1.0.0</version>
+  <name>Bukkit-576</name>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>ASCII</project.build.sourceEncoding>
+  </properties>
+
+  <!--
+    Locally installed CraftBukkit dependency.
+
+    It is assumed that you have pulled, applied and compiled Bukkit PR 576 and the corresponding CraftBukkit PR
+    https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/pull-requests/576/overview
+  -->
+  <dependencies>
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>craftbukkit</artifactId>
+      <version>1.16.5-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>

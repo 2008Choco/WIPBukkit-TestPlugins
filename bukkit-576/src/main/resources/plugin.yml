@@ -1,0 +1,10 @@
+name: TestPlugin-${project.name}
+main: wtf.choco.test.TestPlugin
+version: INDEV
+author: Choco
+api-version: 1.16
+
+commands:
+  test:
+    description: A test command
+    usage: /<command>
