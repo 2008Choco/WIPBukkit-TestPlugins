@@ -16,14 +16,14 @@ import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.BlockType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.FireworkEffect;
+import org.bukkit.ItemType;
 import org.bukkit.Location;
-import org.bukkit.MaterialBlock;
-import org.bukkit.MaterialItem;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -70,7 +70,7 @@ import wtf.choco.test.util.TextUtil;
 
 public class TestExecutionMeta implements CommandSourcedTestExecution {
 
-    private static final Class<? extends ItemMeta> BASE_META_CLASS = Bukkit.getItemFactory().getItemMeta(MaterialItem.APPLE).getClass();
+    private static final Class<? extends ItemMeta> BASE_META_CLASS = Bukkit.getItemFactory().getItemMeta(ItemType.APPLE).getClass();
     private static final Map<DyeColor, ChatColor> DYE_COLOR_TO_CHAT_COLOR = new EnumMap<>(DyeColor.class);
 
     static {
@@ -97,7 +97,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
     static {
         registerMeta(ItemMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.DIAMOND_SWORD);
+                ItemStack item = new ItemStack(ItemType.DIAMOND_SWORD);
                 ItemMeta meta = item.getItemMeta();
 
                 meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier(UUID.randomUUID(), "generic.attack_speed", 2.0, Operation.MULTIPLY_SCALAR_1));
@@ -155,7 +155,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(BannerMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.LIME_BANNER);
+                ItemStack item = new ItemStack(ItemType.LIME_BANNER);
 
                 BannerMeta meta = (BannerMeta) item.getItemMeta();
                 meta.addPattern(new Pattern(DyeColor.BLUE, PatternType.GLOBE));
@@ -175,10 +175,10 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(BlockDataMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.CHEST);
+                ItemStack item = new ItemStack(ItemType.CHEST);
                 BlockDataMeta meta = (BlockDataMeta) item.getItemMeta();
 
-                meta.setBlockData(MaterialBlock.CHEST.createBlockData(blockData -> {
+                meta.setBlockData(BlockType.CHEST.createBlockData(blockData -> {
                     org.bukkit.block.data.type.Chest chest = (org.bukkit.block.data.type.Chest) blockData;
                     chest.setWaterlogged(true);
                     chest.setFacing(BlockFace.EAST);
@@ -189,13 +189,13 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
                 return Arrays.asList(item);
             },
             (player, meta) -> {
-                player.sendMessage("Block data: " + ((BlockDataMeta) meta).getBlockData(MaterialItem.CHEST).getAsString());
+                player.sendMessage("Block data: " + ((BlockDataMeta) meta).getBlockData(ItemType.CHEST).getAsString());
             }
         );
 
         registerMeta(BlockStateMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.SHIELD);
+                ItemStack item = new ItemStack(ItemType.SHIELD);
 
                 BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();
                 Banner bannerState = (Banner) meta.getBlockState();
@@ -213,7 +213,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(BookMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.WRITTEN_BOOK);
+                ItemStack item = new ItemStack(ItemType.WRITTEN_BOOK);
 
                 BookMeta meta = (BookMeta) item.getItemMeta();
                 meta.setAuthor("2008Choco");
@@ -253,7 +253,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(CompassMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.COMPASS);
+                ItemStack item = new ItemStack(ItemType.COMPASS);
 
                 CompassMeta meta = (CompassMeta) item.getItemMeta();
                 meta.setLodestone(player.getLocation());
@@ -276,12 +276,12 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(CrossbowMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.CROSSBOW);
+                ItemStack item = new ItemStack(ItemType.CROSSBOW);
 
                 CrossbowMeta meta = (CrossbowMeta) item.getItemMeta();
-                meta.addChargedProjectile(new ItemStack(MaterialItem.ARROW));
-                meta.addChargedProjectile(new ItemStack(MaterialItem.FIREWORK_ROCKET));
-                meta.addChargedProjectile(new ItemStack(MaterialItem.ARROW));
+                meta.addChargedProjectile(new ItemStack(ItemType.ARROW));
+                meta.addChargedProjectile(new ItemStack(ItemType.FIREWORK_ROCKET));
+                meta.addChargedProjectile(new ItemStack(ItemType.ARROW));
 
                 item.setItemMeta(meta);
                 return Arrays.asList(item);
@@ -299,7 +299,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(EnchantmentStorageMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.ENCHANTED_BOOK);
+                ItemStack item = new ItemStack(ItemType.ENCHANTED_BOOK);
 
                 EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
                 meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 4, false);
@@ -322,7 +322,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(FireworkEffectMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.FIREWORK_STAR);
+                ItemStack item = new ItemStack(ItemType.FIREWORK_STAR);
 
                 FireworkEffectMeta meta = (FireworkEffectMeta) item.getItemMeta();
                 meta.setEffect(FireworkEffect.builder()
@@ -347,7 +347,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(FireworkMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.FIREWORK_ROCKET);
+                ItemStack item = new ItemStack(ItemType.FIREWORK_ROCKET);
 
                 FireworkMeta meta = (FireworkMeta) item.getItemMeta();
                 meta.addEffect(FireworkEffect.builder()
@@ -379,7 +379,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(KnowledgeBookMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.KNOWLEDGE_BOOK);
+                ItemStack item = new ItemStack(ItemType.KNOWLEDGE_BOOK);
 
                 KnowledgeBookMeta meta = (KnowledgeBookMeta) item.getItemMeta();
                 meta.addRecipe(
@@ -401,13 +401,13 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(LeatherArmorMeta.class,
             player -> {
-                LeatherArmorMeta meta = (LeatherArmorMeta) Bukkit.getItemFactory().getItemMeta(MaterialItem.LEATHER_CHESTPLATE);
+                LeatherArmorMeta meta = (LeatherArmorMeta) Bukkit.getItemFactory().getItemMeta(ItemType.LEATHER_CHESTPLATE);
                 meta.setColor(Color.fromRGB(0xC9C91C));
 
-                ItemStack helmet = new ItemStack(MaterialItem.LEATHER_HELMET);
-                ItemStack chestplate = new ItemStack(MaterialItem.LEATHER_CHESTPLATE);
-                ItemStack leggings = new ItemStack(MaterialItem.LEATHER_LEGGINGS);
-                ItemStack boots = new ItemStack(MaterialItem.LEATHER_BOOTS);
+                ItemStack helmet = new ItemStack(ItemType.LEATHER_HELMET);
+                ItemStack chestplate = new ItemStack(ItemType.LEATHER_CHESTPLATE);
+                ItemStack leggings = new ItemStack(ItemType.LEATHER_LEGGINGS);
+                ItemStack boots = new ItemStack(ItemType.LEATHER_BOOTS);
 
                 helmet.setItemMeta(meta);
                 chestplate.setItemMeta(meta);
@@ -423,7 +423,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(MapMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.FILLED_MAP);
+                ItemStack item = new ItemStack(ItemType.FILLED_MAP);
 
                 MapMeta meta = (MapMeta) item.getItemMeta();
                 meta.setColor(Color.fromRGB(0xA919D1));
@@ -445,7 +445,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(PotionMeta.class,
             player -> {
-                ItemStack potionItem = new ItemStack(MaterialItem.POTION);
+                ItemStack potionItem = new ItemStack(ItemType.POTION);
 
                 PotionMeta potionMeta = (PotionMeta) potionItem.getItemMeta();
                 potionMeta.setBasePotionData(new PotionData(PotionType.POISON, true, false));
@@ -453,7 +453,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
                 potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 500, 2, true, true, true), true);
                 potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.SLOW, 100, 1, false, false, false), false);
 
-                ItemStack splashPotionItem = new ItemStack(MaterialItem.SPLASH_POTION);
+                ItemStack splashPotionItem = new ItemStack(ItemType.SPLASH_POTION);
 
                 PotionMeta splashPotionMeta = (PotionMeta) splashPotionItem.getItemMeta();
                 splashPotionMeta.setBasePotionData(new PotionData(PotionType.POISON, false, true));
@@ -484,7 +484,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(SkullMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.PLAYER_HEAD);
+                ItemStack item = new ItemStack(ItemType.PLAYER_HEAD);
 
                 SkullMeta meta = (SkullMeta) item.getItemMeta();
                 meta.setOwningPlayer(player);
@@ -499,7 +499,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(SuspiciousStewMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.SUSPICIOUS_STEW);
+                ItemStack item = new ItemStack(ItemType.SUSPICIOUS_STEW);
 
                 SuspiciousStewMeta meta = (SuspiciousStewMeta) item.getItemMeta();
                 meta.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 500, 2, true, true, true), true);
@@ -519,7 +519,7 @@ public class TestExecutionMeta implements CommandSourcedTestExecution {
 
         registerMeta(TropicalFishBucketMeta.class,
             player -> {
-                ItemStack item = new ItemStack(MaterialItem.TROPICAL_FISH_BUCKET);
+                ItemStack item = new ItemStack(ItemType.TROPICAL_FISH_BUCKET);
 
                 TropicalFishBucketMeta meta = (TropicalFishBucketMeta) item.getItemMeta();
                 meta.setBodyColor(DyeColor.PURPLE);

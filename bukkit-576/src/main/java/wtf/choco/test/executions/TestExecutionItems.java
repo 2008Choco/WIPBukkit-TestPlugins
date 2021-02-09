@@ -2,7 +2,7 @@ package wtf.choco.test.executions;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.MaterialItem;
+import org.bukkit.ItemType;
 import org.bukkit.command.CommandSender;
 
 import wtf.choco.test.util.TextUtil;
@@ -11,14 +11,14 @@ public class TestExecutionItems implements CommandSourcedTestExecution {
 
     @Override
     public void runTest(CommandSender sender, String[] args) {
-        sendItemTo(sender, MaterialItem.APPLE, ChatColor.RED);
-        sendItemTo(sender, MaterialItem.NETHERITE_SWORD, ChatColor.GRAY);
-        sendItemTo(sender, MaterialItem.BEACON, ChatColor.AQUA);
-        sendItemTo(sender, MaterialItem.HONEY_BOTTLE, ChatColor.GOLD);
-        sendItemTo(sender, MaterialItem.COAL_BLOCK, ChatColor.DARK_GRAY);
+        sendItemTo(sender, ItemType.APPLE, ChatColor.RED);
+        sendItemTo(sender, ItemType.NETHERITE_SWORD, ChatColor.GRAY);
+        sendItemTo(sender, ItemType.BEACON, ChatColor.AQUA);
+        sendItemTo(sender, ItemType.HONEY_BOTTLE, ChatColor.GOLD);
+        sendItemTo(sender, ItemType.COAL_BLOCK, ChatColor.DARK_GRAY);
     }
 
-    private static void sendItemTo(CommandSender sender, MaterialItem item, ChatColor colour) {
+    private static void sendItemTo(CommandSender sender, ItemType item, ChatColor colour) {
         sender.sendMessage("");
         sender.sendMessage("Information on " + colour + item.getKey());
         sender.sendMessage(colour + StringUtils.repeat("-", 44));

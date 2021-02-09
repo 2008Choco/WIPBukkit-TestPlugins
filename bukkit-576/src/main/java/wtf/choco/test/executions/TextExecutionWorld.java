@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.bukkit.BlockType;
 import org.bukkit.ChatColor;
-import org.bukkit.MaterialBlock;
 import org.bukkit.Registry;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
@@ -48,7 +48,7 @@ public class TextExecutionWorld implements CommandSourcedTestExecution {
                 player.sendMessage("Looking at " + ChatColor.YELLOW + targetBlock.getType().getKey() + ChatColor.RESET + " (" + targetBlock.getState() + ")");
             }
             else {
-                MaterialBlock blockToCheck = MaterialBlock.match(args[2]);
+                BlockType blockToCheck = BlockType.match(args[2]);
                 if (blockToCheck == null) {
                     player.sendMessage("Could not find block with id " + args[2] + ". Does it exist?");
                     return;
@@ -63,7 +63,7 @@ public class TextExecutionWorld implements CommandSourcedTestExecution {
                 return;
             }
 
-            MaterialBlock blockToSet = MaterialBlock.match(args[2]);
+            BlockType blockToSet = BlockType.match(args[2]);
             if (blockToSet == null) {
                 player.sendMessage("Could not find block with id " + args[2] + ". Does it exist?");
                 return;
